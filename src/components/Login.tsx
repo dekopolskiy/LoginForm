@@ -1,12 +1,15 @@
 import React from 'react';
+import { StateType } from "../redux/store"
+import { connect } from 'react-redux';
 import styles from "./Login.module.css";
 
 type PropsType = {
-
+    email: string,
 }
 const Login: React.FC<PropsType> = (props) => {
     return (
         <>
+            {props.email}
             <div className={styles.login}>
                 <form className={styles.login__form}>
                     <h2>Sign Up Form</h2>
@@ -21,4 +24,18 @@ const Login: React.FC<PropsType> = (props) => {
     )
 }
 
-export default Login;
+const mapStateToProps = (state: StateType) => {
+    return {
+        email: state.login_reducer.email
+    }
+}
+
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        sign_in: () => {
+            
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

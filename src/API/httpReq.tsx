@@ -8,15 +8,25 @@ const instance = axios.create({
     }
 })
 
-type LoginDataType = {
+export type LoginDataType = {
     email: string,
     password: string,
     rememberMe?: boolean,
     captcha?: string
 }
 
-const httpReq = {
+export type UserIdType = {
+    userId: number
+}
+
+export type ReturnDataType = {
+    resultCode: number,
+    messages: Array<string>,
+    data: UserIdType,
+}
+
+export const httpReq = {
     sign_in: (loginData: LoginDataType) => {
-        instance.post(baseURL+"auth/login", loginData)
+        instance.post(baseURL+"auth/login", loginData);
     }
 }
